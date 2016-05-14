@@ -9,24 +9,10 @@ const Seen = sequelize.import('../models/seen');
 const log = debug('Seen');
 
 const message = msg => {
-<<<<<<< HEAD
-  const seenRegex = /^@[#\w]+ seen @[#\w]+/i;
-  const seenMatch = msg.cleanContent.match(seenRegex);
-  const trigMatch = msg.cleanContent.match('.seen ');
-  const isNotBot = !msg.author.bot;
-
-  if (seenMatch || (msg.content.startsWith(trigMatch) && isNotBot)) {
-    let user = msg.mentions[0];
-    if (msg.mentions[1]) {
-      user = msg.mentions[1];
-    }
-=======
   const seenRegex = new RegExp(`^seen ${triggers.mentionRegex}$`, 'i');
 
   if (triggers.messageTriggered(msg, seenRegex)) {
     const user = msg.mentions[msg.mentions.length - 1];
-
->>>>>>> 1bfbc8dabe414fdd6377861e37d89c94e8b87c78
     // untagged @mention, which Regex returns as a false positive
     if (user === undefined) {
       return false;

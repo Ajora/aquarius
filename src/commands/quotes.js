@@ -32,16 +32,7 @@ const getQuote = (quoteId, serverId) => {
 };
 
 const message = msg => {
-<<<<<<< HEAD
-  const isNotBot = !msg.author.bot;
-  const botMention = msg.client.user.mention().toLowerCase();
-  const randomTrig = msg.cleanContent.match('.quote random');
-
-  if (msg.content.toLowerCase() === `${botMention} random quote`
-      || (msg.content.startsWith(randomTrig) && isNotBot)) {
-=======
   if (triggers.messageTriggered(msg, /^(?:random quote|quote random)$/)) {
->>>>>>> 1bfbc8dabe414fdd6377861e37d89c94e8b87c78
     log('Reading random quote');
     Quote.count({
       where: {
